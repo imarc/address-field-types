@@ -12,7 +12,7 @@ namespace imarc\addressfieldtypes\fields;
 
 use imarc\addressfieldtypes\AddressFieldTypes;
 use imarc\addressfieldtypes\assetbundles\countryfield\CountryFieldAsset;
-use imarc\addressfieldtypes\services\Country;
+use imarc\addressfieldtypes\services\Country as CountryService;
 
 use Craft;
 //use craft\base\ElementInterface;
@@ -49,7 +49,6 @@ class Country extends Dropdown
     // Public Methods
     // =========================================================================
 
-
     public function init()
     {
         $this->setSelectFieldValues();
@@ -57,14 +56,12 @@ class Country extends Dropdown
         parent::init();
     }
 
-
-
     /**
      * Sets the select menu option values
      */
     public function setSelectFieldValues()
     {
-        $countries = (new Country)->getData($this->valueFormat);
+        $countries = (new CountryService)->getData($this->valueFormat);
 
         // prepare the field's display options
         $this->options = [
