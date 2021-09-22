@@ -1,0 +1,26 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Address Field Types plugin for Craft CMS 3.x
+ *
+ * Address Field Types Settings.twig
+ *
+ * @author    Imarc
+ * @copyright Copyright (c) 2021 Imarc
+ * @link      https://www.imarc.com
+ * @package   AddressFieldTypes
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("imarc\\addressfieldtypes\\assetbundles\\addressfieldtypes\\AddressFieldTypesAsset") %}
+
+{{ forms.textField({
+    label: 'Some Field',
+    instructions: 'Enter some setting here.',
+    id: 'someAttribute',
+    name: 'someAttribute',
+    value: settings['someAttribute']})
+}}

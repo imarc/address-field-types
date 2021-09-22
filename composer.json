@@ -1,0 +1,51 @@
+{
+    "name": "imarc/address-field-types",
+    "description": "Creates state/province, country, and postal code field types for the CMS",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "address field types"
+    ],
+    "support": {
+        "docs": "https://github.com/imarc/address-field-types/blob/master/README.md",
+        "issues": "https://github.com/imarc/address-field-types/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Imarc",
+            "homepage": "https://www.imarc.com"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0"
+    },
+    "require-dev": {
+      "craftcms/cms": "^3.2.0",
+      "codeception/codeception": "^3.0",
+      "vlucas/phpdotenv": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "imarc\\addressfieldtypes\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Address Field Types",
+        "handle": "addressFieldTypes",
+        "developer": "Imarc",
+        "developerUrl": "https://www.imarc.com",
+        "documentationUrl": "https://github.com/imarc/address-field-types/blob/master/README.md",
+        "changelogUrl": "https://raw.githubusercontent.com/imarc/address-field-types/master/CHANGELOG.md",
+        "components": {
+            "province": "imarc\\addressfieldtypes\\services\\Province",
+            "country": "imarc\\addressfieldtypes\\services\\Country",
+            "postalCode": "imarc\\addressfieldtypes\\services\\PostalCode"
+        },
+        "class": "imarc\\addressfieldtypes\\AddressFieldTypes"
+    }
+}

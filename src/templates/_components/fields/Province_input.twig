@@ -1,0 +1,24 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Address Field Types plugin for Craft CMS 3.x
+ *
+ * Province Field Input
+ *
+ * @author    Imarc
+ * @copyright Copyright (c) 2021 Imarc
+ * @link      https://www.imarc.com
+ * @package   AddressFieldTypes
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{{ forms.textField({
+        label: 'Some Field',
+        instructions: 'Enter some text here.',
+        id: name,
+        name: name,
+        value: value})
+}}
