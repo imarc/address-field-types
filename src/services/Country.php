@@ -12,6 +12,8 @@ namespace imarc\addressfieldtypes\services;
 
 use imarc\addressfieldtypes\AddressFieldTypes;
 
+use League\ISO3166\ISO3166 as LeagueService;
+
 use Craft;
 use craft\base\Component;
 
@@ -26,15 +28,23 @@ class Country extends Component
     // =========================================================================
 
     /*
-     * @return mixed
+     * @param  string  $valueFormat  Valid values: alpha2, alpha3, numeric (3 digit country code), name
+     * 
+     * @return object A data object that implements an iterator returning array data     
+     * 
+     * Data sample:
+     * key => [
+     *      'name' => 'Netherlands',
+     *      'alpha2' => 'NL',
+     *      'alpha3' => 'NLD',
+     *      'numeric' => '528',
+     *      'currency' => [
+     *              'EUR',
+     *          ]
+     *      ]
      */
-    public function exampleService()
+    public function getData($valueFormat)
     {
-        $result = 'something';
-        // Check our Plugin's settings for `someAttribute`
-        if (AddressFieldTypes::$plugin->getSettings()->someAttribute) {
-        }
-
-        return $result;
+        return (new LeagueService)->iterator($valueFormat);
     }
 }

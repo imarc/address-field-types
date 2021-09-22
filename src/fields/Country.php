@@ -12,28 +12,28 @@ namespace imarc\addressfieldtypes\fields;
 
 use imarc\addressfieldtypes\AddressFieldTypes;
 use imarc\addressfieldtypes\assetbundles\countryfield\CountryFieldAsset;
+use imarc\addressfieldtypes\services\Country;
 
 use Craft;
-use craft\base\ElementInterface;
-use craft\base\Field;
-use craft\helpers\Db;
-use yii\db\Schema;
-use craft\helpers\Json;
+//use craft\base\ElementInterface;
+use craft\fields\Dropdown;
 
 /**
  * @author    Imarc
  * @package   AddressFieldTypes
  * @since     1.0.0
  */
-class Country extends Field
+class Country extends Dropdown
 {
     // Public Properties
     // =========================================================================
 
     /**
+     * Valid values: alpha2, alpha3, numeric (3 digit country code), name
+     * 
      * @var string
      */
-    public $someAttribute = 'Some Default';
+    public $valueFormat = 'alpha2';
 
     // Static Methods
     // =========================================================================
@@ -49,9 +49,46 @@ class Country extends Field
     // Public Methods
     // =========================================================================
 
+
+    public function init()
+    {
+        $this->setSelectFieldValues();
+
+        parent::init();
+    }
+
+
+
+    /**
+     * Sets the select menu option values
+     */
+    public function setSelectFieldValues()
+    {
+        $countries = (new Country)->getData($this->valueFormat);
+
+        // prepare the field's display options
+        $this->options = [
+            [
+                'label' => Craft::t('site', 'Choose a Country'),
+                'value' => '',
+                'disabled' => true,
+            ]
+        ];
+
+        // add Commerce's countries as options
+        foreach ($countries as $key => $country) {
+
+            $this->options[] = [
+                'label' => Craft::t('site', $country['name']),
+                'value' => $key
+            ];
+        }
+    }
+
     /**
      * @inheritdoc
      */
+    /**
     public function rules()
     {
         $rules = parent::rules();
@@ -61,34 +98,32 @@ class Country extends Field
         ]);
         return $rules;
     }
+    /**/
 
     /**
      * @inheritdoc
      */
-    public function getContentColumnType(): string
-    {
-        return Schema::TYPE_STRING;
-    }
-
     /**
-     * @inheritdoc
-     */
     public function normalizeValue($value, ElementInterface $element = null)
     {
         return $value;
     }
+    /**/
 
     /**
      * @inheritdoc
      */
+    /**
     public function serializeValue($value, ElementInterface $element = null)
     {
         return parent::serializeValue($value, $element);
     }
+    /**/
 
     /**
      * @inheritdoc
      */
+    /**
     public function getSettingsHtml()
     {
         // Render the settings template
@@ -99,10 +134,12 @@ class Country extends Field
             ]
         );
     }
+    /**/
 
     /**
      * @inheritdoc
      */
+    /**
     public function getInputHtml($value, ElementInterface $element = null): string
     {
         // Register our asset bundle
@@ -134,4 +171,5 @@ class Country extends Field
             ]
         );
     }
+    /**/
 }
