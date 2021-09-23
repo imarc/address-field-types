@@ -43,7 +43,7 @@ class Province extends Field
      */
     public static function displayName(): string
     {
-        return Craft::t('address-field-types', 'Province');
+        return Craft::t('address-field-types', 'Province (Address Fields)');
     }
 
     // Public Methods
@@ -52,6 +52,7 @@ class Province extends Field
     /**
      * @inheritdoc
      */
+    /**
     public function rules()
     {
         $rules = parent::rules();
@@ -61,34 +62,42 @@ class Province extends Field
         ]);
         return $rules;
     }
+    /**/
 
     /**
      * @inheritdoc
      */
+    /**
     public function getContentColumnType(): string
     {
         return Schema::TYPE_STRING;
     }
+    /**/
 
     /**
      * @inheritdoc
      */
+    /**
     public function normalizeValue($value, ElementInterface $element = null)
     {
         return $value;
     }
+    /**/
 
     /**
      * @inheritdoc
      */
+    /**
     public function serializeValue($value, ElementInterface $element = null)
     {
         return parent::serializeValue($value, $element);
     }
+    /**/
 
     /**
      * @inheritdoc
      */
+    /**
     public function getSettingsHtml()
     {
         // Render the settings template
@@ -99,10 +108,12 @@ class Province extends Field
             ]
         );
     }
+    /**/
 
     /**
      * @inheritdoc
      */
+    /**
     public function getInputHtml($value, ElementInterface $element = null): string
     {
         // Register our asset bundle
@@ -134,4 +145,5 @@ class Province extends Field
             ]
         );
     }
+    /**/
 }

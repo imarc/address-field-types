@@ -43,7 +43,7 @@ class Country extends Dropdown
      */
     public static function displayName(): string
     {
-        return Craft::t('address-field-types', 'Country');
+        return Craft::t('address-field-types', 'Country (Address Fields)');
     }
 
     // Public Methods
