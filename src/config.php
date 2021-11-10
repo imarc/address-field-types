@@ -22,9 +22,4 @@
  * you do for 'general.php'
  */
 
-return [
-
-    // This controls blah blah blah
-    "someAttribute" => true,
-
-];
+return [];

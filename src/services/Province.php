@@ -24,17 +24,4 @@ class Province extends Component
 {
     // Public Methods
     // =========================================================================
-
-    /*
-     * @return mixed
-     */
-    public function exampleService()
-    {
-        $result = 'something';
-        // Check our Plugin's settings for `someAttribute`
-        if (AddressFieldTypes::$plugin->getSettings()->someAttribute) {
-        }
-
-        return $result;
-    }
 }

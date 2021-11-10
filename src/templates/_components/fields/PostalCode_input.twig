@@ -15,10 +15,13 @@
 
 {% import "_includes/forms" as forms %}
 
+{% set tLabel =  'Related Country Field Handle'|t %}
+{% set tInstructions = 'Associate this field to a country drop down to validate postal code format. Enter the related field handle here.'|t %}
+
 {{ forms.textField({
-        label: 'Some Field',
-        instructions: 'Enter some text here.',
-        id: name,
-        name: name,
-        value: value})
+    label:tLabel,
+    instructions: tInstructions,
+    id: 'relatedCountryField',
+    name: 'relatedCountryField',
+    value: field['relatedCountryField']})
 }}

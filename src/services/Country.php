@@ -12,7 +12,7 @@ namespace imarc\addressfieldtypes\services;
 
 use imarc\addressfieldtypes\AddressFieldTypes;
 
-use League\ISO3166\ISO3166 as LeagueService;
+use League\ISO3166\ISO3166 as League;
 
 use Craft;
 use craft\base\Component;
@@ -45,6 +45,8 @@ class Country extends Component
      */
     public function getData($valueFormat)
     {
-        return (new LeagueService)->iterator($valueFormat);
+        $iterator = (new League)->iterator($valueFormat);
+
+        return iterator_to_array($iterator);
     }
 }

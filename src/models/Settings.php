@@ -28,7 +28,10 @@ class Settings extends Model
     /**
      * @var string
      */
-    public $someAttribute = 'Some Default';
+    public $country = [
+                        'valueFormat' => '',
+                        'filters' => null
+                    ];
 
     // Public Methods
     // =========================================================================
@@ -36,11 +39,11 @@ class Settings extends Model
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
-        return [
-            ['someAttribute', 'string'],
-            ['someAttribute', 'default', 'value' => 'Some Default'],
-        ];
-    }
+    // public function rules()
+    // {
+    //     return [
+    //         ['someAttribute', 'string'],
+    //         ['someAttribute', 'default', 'value' => 'Some Default'],
+    //     ];
+    // }
 }

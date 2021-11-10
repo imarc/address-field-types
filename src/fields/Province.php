@@ -33,7 +33,8 @@ class Province extends Field
     /**
      * @var string
      */
-    public $someAttribute = 'Some Default';
+    public $relatedCountryField;
+    public $someAttribute; // Remove this after config rebuild
 
     // Static Methods
     // =========================================================================
@@ -57,8 +58,8 @@ class Province extends Field
     {
         $rules = parent::rules();
         $rules = array_merge($rules, [
-            ['someAttribute', 'string'],
-            ['someAttribute', 'default', 'value' => 'Some Default'],
+            ['relatedCountryField', 'string'],
+            ['relatedCountryField', 'default', 'value' => 'Some Default'],
         ]);
         return $rules;
     }
@@ -97,7 +98,6 @@ class Province extends Field
     /**
      * @inheritdoc
      */
-    /**
     public function getSettingsHtml()
     {
         // Render the settings template
@@ -108,7 +108,6 @@ class Province extends Field
             ]
         );
     }
-    /**/
 
     /**
      * @inheritdoc

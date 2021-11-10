@@ -31,7 +31,7 @@ class CountryController extends Controller
      *         The actions must be in 'kebab-case'
      * @access protected
      */
-    protected $allowAnonymous = ['index', 'do-something'];
+    protected $allowAnonymous = ['index'];
 
     // Public Methods
     // =========================================================================
@@ -42,16 +42,6 @@ class CountryController extends Controller
     public function actionIndex()
     {
         $result = 'Welcome to the CountryController actionIndex() method';
-
-        return $result;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function actionDoSomething()
-    {
-        $result = 'Welcome to the CountryController actionDoSomething() method';
 
         return $result;
     }

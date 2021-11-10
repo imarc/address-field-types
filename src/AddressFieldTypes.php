@@ -85,21 +85,21 @@ class AddressFieldTypes extends Plugin
             UrlManager::class,
             UrlManager::EVENT_REGISTER_SITE_URL_RULES,
             function (RegisterUrlRulesEvent $event) {
-                $event->rules['siteActionTrigger1'] = 'address-field-types/province';
-                $event->rules['siteActionTrigger2'] = 'address-field-types/country';
-                $event->rules['siteActionTrigger3'] = 'address-field-types/postal-code';
+                $event->rules['address-field-types-province'] = 'address-field-types/province';
+                $event->rules['address-field-types-country'] = 'address-field-types/country';
+                $event->rules['address-field-types-postal-code'] = 'address-field-types/postal-code';
             }
         );
 
-        Event::on(
-            UrlManager::class,
-            UrlManager::EVENT_REGISTER_CP_URL_RULES,
-            function (RegisterUrlRulesEvent $event) {
-                $event->rules['cpActionTrigger1'] = 'address-field-types/province/do-something';
-                $event->rules['cpActionTrigger2'] = 'address-field-types/country/do-something';
-                $event->rules['cpActionTrigger3'] = 'address-field-types/postal-code/do-something';
-            }
-        );
+        // Event::on(
+        //     UrlManager::class,
+        //     UrlManager::EVENT_REGISTER_CP_URL_RULES,
+        //     function (RegisterUrlRulesEvent $event) {
+        //         $event->rules['cpActionTrigger1'] = 'address-field-types/province/do-something';
+        //         $event->rules['cpActionTrigger2'] = 'address-field-types/country/do-something';
+        //         $event->rules['cpActionTrigger3'] = 'address-field-types/postal-code/do-something';
+        //     }
+        // );
 
         Event::on(
             Fields::class,
@@ -121,14 +121,14 @@ class AddressFieldTypes extends Plugin
             }
         );
 
-        Event::on(
-            Plugins::class,
-            Plugins::EVENT_AFTER_INSTALL_PLUGIN,
-            function (PluginEvent $event) {
-                if ($event->plugin === $this) {
-                }
-            }
-        );
+        // Event::on(
+        //     Plugins::class,
+        //     Plugins::EVENT_AFTER_INSTALL_PLUGIN,
+        //     function (PluginEvent $event) {
+        //         if ($event->plugin === $this) {
+        //         }
+        //     }
+        // );
 
         Craft::info(
             Craft::t(

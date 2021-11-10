@@ -15,7 +15,7 @@ use imarc\addressfieldtypes\assetbundles\countryfield\CountryFieldAsset;
 use imarc\addressfieldtypes\services\Country as CountryService;
 
 use Craft;
-//use craft\base\ElementInterface;
+use craft\base\ElementInterface;
 use craft\fields\Dropdown;
 
 /**
@@ -35,6 +35,43 @@ class Country extends Dropdown
      */
     public $valueFormat = 'alpha2';
 
+    /**
+     * Can be set to an ISO 3166-1 alpha-2, alpha-3, or numeric country code 
+     * 
+     * @var string
+     */
+    public $default = '';
+
+
+    /**
+     * Can be set to a comma separated string of ISO 3166-1 alpha-2, alpha-3, or numeric country codes
+     * 
+     * @var string
+     */
+    public $disabled = '';
+
+    /**
+     * The default country code formatted to match $valueFormat
+     * 
+     * @var string
+     */
+    private $defaultValue = '';
+
+     /**
+     * An array of disabled country codes formatted to match $valueFormat
+     * 
+     * @var string
+     */
+    private $disabledValues = [];
+
+     /**
+     * An array of disabled country codes formatted to match $valueFormat
+     * 
+     * @var string
+     */
+    public $countries = [];
+
+
     // Static Methods
     // =========================================================================
 
@@ -46,11 +83,61 @@ class Country extends Dropdown
         return Craft::t('address-field-types', 'Country (Address Fields)');
     }
 
+
+    // Private Methods
+    // =========================================================================
+
+    private function isDisabled($code)
+    {        
+        if (empty($this->disabledValues)) {
+            return false;
+        }
+
+        return in_array($code, $this->disabledValues);
+    }
+
+    private function formatDisabledValues()
+    {
+        // Default country
+        $this->defaultValue = $this->getValidFormat($this->default);
+
+        // Disabled countries
+        $codes = array_map('trim', explode(',', $this->disabled));
+
+        foreach ($codes as $code) {
+            $validCode = $this->getValidFormat($code);
+
+            if ($validCode) {
+                array_push($this->disabledValues, $validCode);
+            }
+        }
+    }
+
+    private function getValidFormat($code)
+    {
+        foreach ($this->countries as $key => $country) {
+            if ($code === $country['alpha2']) {
+                return $country[$this->valueFormat];
+            }
+            if ($code === $country['alpha3']) {
+                return $country[$this->valueFormat];
+            }
+            if ($code === $country['numeric']) {
+                return $country[$this->valueFormat];
+            }
+        }
+
+        return '';
+    }
+
     // Public Methods
     // =========================================================================
 
     public function init()
     {
+        $this->countries = (new CountryService)->getData($this->valueFormat);
+
+        $this->formatDisabledValues();
         $this->setSelectFieldValues();
 
         parent::init();
@@ -61,24 +148,26 @@ class Country extends Dropdown
      */
     public function setSelectFieldValues()
     {
-        $countries = (new CountryService)->getData($this->valueFormat);
-
         // prepare the field's display options
         $this->options = [
             [
                 'label' => Craft::t('site', 'Choose a Country'),
                 'value' => '',
-                'disabled' => true,
             ]
         ];
 
         // add Commerce's countries as options
-        foreach ($countries as $key => $country) {
-
-            $this->options[] = [
+        foreach ($this->countries as $key => $country) {
+            $opt = [
                 'label' => Craft::t('site', $country['name']),
                 'value' => $key
             ];
+
+            if ($this->isDisabled($key)) {
+                $opt['disabled'] = true;
+            }
+            
+            array_push($this->options, $opt);
         }
     }
 
@@ -90,8 +179,8 @@ class Country extends Dropdown
     {
         $rules = parent::rules();
         $rules = array_merge($rules, [
-            ['someAttribute', 'string'],
-            ['someAttribute', 'default', 'value' => 'Some Default'],
+            ['valueFormat', 'string'],
+            ['valueFormat', 'default', 'value' => $this->valueFormat],
         ]);
         return $rules;
     }
@@ -113,6 +202,9 @@ class Country extends Dropdown
     /**
     public function serializeValue($value, ElementInterface $element = null)
     {
+        if (is_null($value)) {
+            $value = $this->defaultValue;
+        }
         return parent::serializeValue($value, $element);
     }
     /**/
@@ -120,7 +212,6 @@ class Country extends Dropdown
     /**
      * @inheritdoc
      */
-    /**
     public function getSettingsHtml()
     {
         // Render the settings template
@@ -131,12 +222,10 @@ class Country extends Dropdown
             ]
         );
     }
-    /**/
 
     /**
      * @inheritdoc
      */
-    /**
     public function getInputHtml($value, ElementInterface $element = null): string
     {
         // Register our asset bundle
@@ -153,8 +242,13 @@ class Country extends Dropdown
             'namespace' => $namespacedId,
             'prefix' => Craft::$app->getView()->namespaceInputId(''),
             ];
-        $jsonVars = Json::encode($jsonVars);
+        $jsonVars = json_encode($jsonVars);
         Craft::$app->getView()->registerJs("$('#{$namespacedId}-field').AddressFieldTypesCountry(" . $jsonVars . ");");
+
+        // Overload the default value if null
+        if (is_null($value->value)) {
+            $value->value = $this->defaultValue;
+        }
 
         // Render the input template
         return Craft::$app->getView()->renderTemplate(
@@ -165,8 +259,8 @@ class Country extends Dropdown
                 'field' => $this,
                 'id' => $id,
                 'namespacedId' => $namespacedId,
+                'options' => $this->options,
             ]
         );
     }
-    /**/
 }

@@ -17,10 +17,13 @@
 
 {% do view.registerAssetBundle("imarc\\addressfieldtypes\\assetbundles\\addressfieldtypes\\AddressFieldTypesAsset") %}
 
+{% set tLabel =  'Related Country Field Handle'|t %}
+{% set tInstructions = 'Associate this field to a country drop down to validate postal code format. Enter the related field handle here.'|t %}
+
 {{ forms.textField({
-    label: 'Some Attribute',
-    instructions: 'Enter some attribute here.',
-    id: 'someAttribute',
-    name: 'someAttribute',
-    value: field['someAttribute']})
+    label:tLabel,
+    instructions: tInstructions,
+    id: 'relatedCountryField',
+    name: 'relatedCountryField',
+    value: field['relatedCountryField']})
 }}

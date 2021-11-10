@@ -31,7 +31,7 @@ class PostalCodeController extends Controller
      *         The actions must be in 'kebab-case'
      * @access protected
      */
-    protected $allowAnonymous = ['index', 'do-something'];
+    protected $allowAnonymous = ['index'];
 
     // Public Methods
     // =========================================================================
@@ -42,16 +42,6 @@ class PostalCodeController extends Controller
     public function actionIndex()
     {
         $result = 'Welcome to the PostalCodeController actionIndex() method';
-
-        return $result;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function actionDoSomething()
-    {
-        $result = 'Welcome to the PostalCodeController actionDoSomething() method';
 
         return $result;
     }
