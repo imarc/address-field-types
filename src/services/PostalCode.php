@@ -11,16 +11,16 @@
 namespace imarc\addressfieldtypes\services;
 
 use imarc\addressfieldtypes\AddressFieldTypes;
+use imarc\addressfieldtypes\services\Base as BaseService;
 
 use Craft;
-use craft\base\Component;
 
 /**
  * @author    Imarc
  * @package   AddressFieldTypes
  * @since     1.0.0
  */
-class PostalCode extends Component
+class PostalCode extends BaseService
 {
     // Public Methods
     // =========================================================================

@@ -159,7 +159,8 @@ class Country extends Dropdown
         // add Commerce's countries as options
         foreach ($this->countries as $key => $country) {
             $opt = [
-                'label' => Craft::t('site', $country['name']),
+                //'label' => Craft::t('site', $country['name']), // League country format
+                'label' => $country['name'],
                 'value' => $key
             ];
 

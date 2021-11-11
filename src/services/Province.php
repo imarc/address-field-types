@@ -11,17 +11,47 @@
 namespace imarc\addressfieldtypes\services;
 
 use imarc\addressfieldtypes\AddressFieldTypes;
+use imarc\addressfieldtypes\services\Base as BaseService;
+use imarc\addressfieldtypes\services\Country as CountryService;
 
 use Craft;
-use craft\base\Component;
 
 /**
  * @author    Imarc
  * @package   AddressFieldTypes
  * @since     1.0.0
  */
-class Province extends Component
+class Province extends BaseService
 {
     // Public Methods
     // =========================================================================
+
+    public function getData($country_code=null)
+    {
+        if (empty($country_code)) {
+            return [];
+        }
+
+        $country = (new CountryService)->getCountry($country_code);
+
+        if (empty($country)) {
+            return [];
+        }
+
+        $subs = $this->isoCodesFactory()->getSubdivisions()->getAllByCountryCode($country['alpha2']);
+
+        $divisions = [];
+
+        foreach ($subs as $sub) {
+            $code = substr($sub->getCode(), -2, 2);
+            $divisions[$code] = [
+                'code' => $code,
+                'name' => $sub->getLocalName(),
+                'type' => $sub->getType(),
+                'parent' => $sub->getParent()
+            ];
+        }
+
+        return $divisions;
+    }
 }
