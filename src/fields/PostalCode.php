@@ -112,7 +112,7 @@ class PostalCode extends Field
     /**
      * @inheritdoc
      */
-    /**
+    /**/
     public function getInputHtml($value, ElementInterface $element = null): string
     {
         // Register our asset bundle

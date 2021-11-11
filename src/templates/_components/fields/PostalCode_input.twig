@@ -12,16 +12,18 @@
  * @since     1.0.0
  */
 #}
-
 {% import "_includes/forms" as forms %}
 
-{% set tLabel =  'Related Country Field Handle'|t %}
-{% set tInstructions = 'Associate this field to a country drop down to validate postal code format. Enter the related field handle here.'|t %}
+{% js %}
+    let postalCodeId = 'fields-{{ id }}';
+    let pcCountryId = 'fields-{{ field.relatedCountryField }}';
+
+    console.log('PostalCode_input.twig');
+    console.log('postal code ID ' + postalCodeId + ' matches to ' + pcCountryId);
+{% endjs %}
 
 {{ forms.textField({
-    label:tLabel,
-    instructions: tInstructions,
-    id: 'relatedCountryField',
-    name: 'relatedCountryField',
-    value: field['relatedCountryField']})
+    id: id,
+    name: name,
+    value: value})
 }}

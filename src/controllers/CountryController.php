@@ -11,6 +11,7 @@
 namespace imarc\addressfieldtypes\controllers;
 
 use imarc\addressfieldtypes\AddressFieldTypes;
+use imarc\addressfieldtypes\services\Country;
 
 use Craft;
 use craft\web\Controller;
@@ -41,8 +42,10 @@ class CountryController extends Controller
      */
     public function actionIndex()
     {
-        $result = 'Welcome to the CountryController actionIndex() method';
+        $format = Craft::$app->request->getQueryParam('format');
 
-        return $result;
+        $data = (new Country)->getData($format);
+
+        return json_encode($data);
     }
 }

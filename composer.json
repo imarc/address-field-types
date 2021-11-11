@@ -37,7 +37,7 @@
     },
     "extra": {
         "name": "Address Field Types",
-        "handle": "addressFieldTypes",
+        "handle": "address-field-types",
         "developer": "Imarc",
         "developerUrl": "https://www.imarc.com",
         "documentationUrl": "https://github.com/imarc/address-field-types/blob/master/README.md",

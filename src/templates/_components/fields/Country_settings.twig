@@ -17,7 +17,7 @@
 
 {% do view.registerAssetBundle("imarc\\addressfieldtypes\\assetbundles\\addressfieldtypes\\AddressFieldTypesAsset") %}
 
-{% set tLabel =  'Default Country'|t %}
+{# {% set tLabel =  'Default Country'|t %}
 {% set tAlpha1 =  'Default Country'|t %}
 {% set tAlpha2 =  'Default Country'|t %}
 {% set tNumeric =  'Default Country'|t %}
@@ -32,7 +32,7 @@
         {value:'alpha3',label:tAlpha2},
         {value:'numeric',label:tNumeric}
     ]})
-}}
+}} #}
 
 {% set tLabel =  'Default Country'|t %}
 {% set tInstructions = 'Enter the ISO 3166-1 code (alpha-2, alpha-3, or numeric) for the default country'|t %}
