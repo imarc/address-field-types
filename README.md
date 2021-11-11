@@ -1,12 +1,12 @@
 # Address Field Types plugin for Craft CMS 3.x
 
-Creates state/province, country, and postal code field types  for the CMS
+Creates state/province, country, and postal code field types for the CMS contol panel. The country and state/province drop downs will be dynamically generated from ISO 3166-1 and ISO 3166-2 standards.
 
 ![Screenshot](resources/img/plugin-logo.png)
 
 ## Requirements
 
-This plugin requires Craft CMS 3.0.0-beta.23 or later.
+This plugin requires Craft CMS 3.0.0 or later.
 
 ## Installation
 
@@ -38,6 +38,8 @@ To install the plugin, follow these instructions.
 
 Some things to do, and ideas for potential features:
 
-* Release it
+* Alpha/Beta Release
+* Add Documentation
+* Add Tests
 
 Brought to you by [Imarc](https://www.imarc.com)

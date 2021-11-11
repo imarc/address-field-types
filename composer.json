@@ -23,7 +23,8 @@
     ],
     "require": {
         "craftcms/cms": "^3.0.0",
-        "league/iso3166": "^2.1"
+        "league/iso3166": "^2.1",
+        "sokil/php-isocodes": "^3.0"
     },
     "require-dev": {
       "craftcms/cms": "^3.2.0",
