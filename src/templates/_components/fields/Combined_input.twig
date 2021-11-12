@@ -1,0 +1,34 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Address Field Types plugin for Craft CMS 3.x
+ *
+ * Combined Field Input
+ *
+ * @author    Imarc
+ * @copyright Copyright (c) 2021 Imarc
+ * @link      https://www.imarc.com
+ * @package   AddressFieldTypes
+ * @since     1.0.0
+ */
+#}
+{% import "_includes/forms" as forms %}
+{% do view.registerAssetBundle("imarc\\addressfieldtypes\\assetbundles\\addressfieldtypes\\FieldRelationshipsAsset") %}
+
+{% js %}
+    if (fId == 'undefined') {
+        var fId
+    }
+    fId = 'field ID is {{ id }}';
+
+    console.log('Combined_input.twig');
+    console.log(fId)
+{% endjs %}
+
+{{ forms.select({
+    id: id,
+    name: name,
+    value: value,
+    required: field.required,
+    options: options})
+}}

@@ -15,6 +15,7 @@ use imarc\addressfieldtypes\services\Country as CountryService;
 use imarc\addressfieldtypes\services\PostalCode as PostalCodeService;
 use imarc\addressfieldtypes\variables\AddressFieldTypesVariable;
 use imarc\addressfieldtypes\models\Settings;
+use imarc\addressfieldtypes\fields\Combined as CombinedField;
 use imarc\addressfieldtypes\fields\Province as ProvinceField;
 use imarc\addressfieldtypes\fields\Country as CountryField;
 use imarc\addressfieldtypes\fields\PostalCode as PostalCodeField;
@@ -85,9 +86,10 @@ class AddressFieldTypes extends Plugin
             UrlManager::class,
             UrlManager::EVENT_REGISTER_SITE_URL_RULES,
             function (RegisterUrlRulesEvent $event) {
-                $event->rules['address-field-types-province'] = 'address-field-types/province';
-                $event->rules['address-field-types-country'] = 'address-field-types/country';
-                $event->rules['address-field-types-postal-code'] = 'address-field-types/postal-code';
+                $event->rules['address-field-types-combined'] = 'address-field-types/combined';
+                // $event->rules['address-field-types-province'] = 'address-field-types/province';
+                // $event->rules['address-field-types-country'] = 'address-field-types/country';
+                // $event->rules['address-field-types-postal-code'] = 'address-field-types/postal-code';
             }
         );
 
@@ -105,9 +107,10 @@ class AddressFieldTypes extends Plugin
             Fields::class,
             Fields::EVENT_REGISTER_FIELD_TYPES,
             function (RegisterComponentTypesEvent $event) {
-                $event->types[] = ProvinceField::class;
-                $event->types[] = CountryField::class;
-                $event->types[] = PostalCodeField::class;
+                $event->types[] = CombinedField::class;
+                // $event->types[] = ProvinceField::class;
+                // $event->types[] = CountryField::class;
+                // $event->types[] = PostalCodeField::class;
             }
         );
 

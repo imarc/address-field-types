@@ -1,0 +1,61 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Address Field Types plugin for Craft CMS
+ *
+ * Combined Field Settings
+ *
+ * @author    Imarc
+ * @copyright Copyright (c) 2021 Imarc
+ * @link      https://www.imarc.com
+ * @package   AddressFieldTypes
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("imarc\\addressfieldtypes\\assetbundles\\addressfieldtypes\\AddressFieldTypesAsset") %}
+
+{% set tLabel =  'Database Values Format'|t %}
+{% set tInstructions = 'Select the format for the country code (ISO 3166-1) when saving values in the database'|t %}
+{% set tName =  'Full Name'|t %}
+{% set tAlphaTwo =  '2 Letter Code (alpha-2)'|t %}
+{% set tAlphaThree =  '3 Letter Code (alpha-3)'|t %}
+{% set tNumeric =  'Numeric Code'|t %}
+
+{{ forms.selectField({
+    label: tLabel,
+    instructions: tInstructions,
+    id: 'valueFormat',
+    name: 'valueFormat',
+    value: field['valueFormat'],
+    options:[
+        {value:'name',label:tName},
+        {value:'alpha2',label:tAlphaTwo},
+        {value:'alpha3',label:tAlphaThree},
+        {value:'numeric',label:tNumeric}
+    ]})
+}}
+
+{% set tLabel =  'Default Country'|t %}
+{% set tInstructions = 'Enter the ISO 3166-1 code (alpha-2, alpha-3, or numeric) for the default country'|t %}
+
+{{ forms.textField({
+    label:tLabel,
+    instructions: tInstructions,
+    id: 'default',
+    name: 'default',
+    value: field['default']})
+}}
+
+{% set tLabel =  'Disabled Countries'|t %}
+{% set tInstructions = 'Enter a comma separated list of the ISO 3166-1 codes (alpha-2, alpha-3, or numeric) for any disabled countries'|t %}
+
+{{ forms.textField({
+    label:tLabel,
+    instructions: tInstructions,
+    id: 'disabled',
+    name: 'disabled',
+    value: field['disabled']})
+}}
