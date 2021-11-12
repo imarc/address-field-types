@@ -23,7 +23,6 @@ use craft\web\Controller;
  */
 class ProvinceController extends Controller
 {
-
     // Protected Properties
     // =========================================================================
 

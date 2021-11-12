@@ -12,18 +12,26 @@
  * @since     1.0.0
  */
 #}
+
 {% import "_includes/forms" as forms %}
 
 {% js %}
-    let provinceId = 'fields-{{ id }}';
-    let pCountryId = 'fields-{{ field.relatedCountryField }}';
+    if (tId == 'undefined') {
+        var tId, pCountryId;
+    }
+
+    tId = 'fields-{{ id }}';
+    pCountryId = 'fields-{{ field.relatedCountryField }}';
 
     console.log('PostalCode_input.twig');
-    console.log('province ID ' + provinceId + ' matches to ' + pCountryId);
+    console.log('province ID ' + tId + ' matches to ' + pCountryId);
 {% endjs %}
 
-{{ forms.textField({
+{{ forms.autosuggestField({
     id: id,
     name: name,
-    value: value})
+    value: value,
+    suggestEnvVars: false,
+    required: field.required,
+    suggestions: ['MA', 'ME', 'NH', 'VT']})
 }}

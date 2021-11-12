@@ -112,7 +112,6 @@ class Province extends Field
     /**
      * @inheritdoc
      */
-    /**/
     public function getInputHtml($value, ElementInterface $element = null): string
     {
         // Register our asset bundle
@@ -126,8 +125,10 @@ class Province extends Field
         $jsonVars = [
             'id' => $id,
             'name' => $this->handle,
+            'value' => $value,
             'namespace' => $namespacedId,
             'prefix' => Craft::$app->getView()->namespaceInputId(''),
+            'relatedFieldId' => $this->relatedCountryField,
             ];
         $jsonVars = Json::encode($jsonVars);
         Craft::$app->getView()->registerJs("$('#{$namespacedId}-field').AddressFieldTypesProvince(" . $jsonVars . ");");
@@ -141,8 +142,8 @@ class Province extends Field
                 'field' => $this,
                 'id' => $id,
                 'namespacedId' => $namespacedId,
+                'relatedFieldId' => $this->relatedCountryField,
             ]
         );
     }
-    /**/
 }

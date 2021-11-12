@@ -16,12 +16,19 @@
 {% do view.registerAssetBundle("imarc\\addressfieldtypes\\assetbundles\\addressfieldtypes\\FieldRelationshipsAsset") %}
 
 {% js %}
+    if (fId == 'undefined') {
+        var fId
+    }
+    fId = 'field ID is {{ id }}';
+
     console.log('Country_input.twig');
+    console.log(fId)
 {% endjs %}
 
 {{ forms.select({
     id: id,
     name: name,
     value: value,
-    options:options})
+    required: field.required,
+    options: options})
 }}

@@ -135,11 +135,8 @@ class Country extends BaseService
 
         if ($country) {
             return $this->formatCountry($country);
-
-            Craft::dd('here');
         }
 
-            Craft::dd('there');
         return null;
     }
 }

@@ -37,6 +37,8 @@
 
 /* -- _this.options gives us access to the $jsonVars that our FieldType passed down to us */
 
+                console.log(_this.options);
+
             });
         }
     };
