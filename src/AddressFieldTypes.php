@@ -87,9 +87,6 @@ class AddressFieldTypes extends Plugin
             UrlManager::EVENT_REGISTER_SITE_URL_RULES,
             function (RegisterUrlRulesEvent $event) {
                 $event->rules['address-field-types-combined'] = 'address-field-types/combined';
-                // $event->rules['address-field-types-province'] = 'address-field-types/province';
-                // $event->rules['address-field-types-country'] = 'address-field-types/country';
-                // $event->rules['address-field-types-postal-code'] = 'address-field-types/postal-code';
             }
         );
 
@@ -98,8 +95,6 @@ class AddressFieldTypes extends Plugin
         //     UrlManager::EVENT_REGISTER_CP_URL_RULES,
         //     function (RegisterUrlRulesEvent $event) {
         //         $event->rules['cpActionTrigger1'] = 'address-field-types/province/do-something';
-        //         $event->rules['cpActionTrigger2'] = 'address-field-types/country/do-something';
-        //         $event->rules['cpActionTrigger3'] = 'address-field-types/postal-code/do-something';
         //     }
         // );
 
@@ -108,9 +103,6 @@ class AddressFieldTypes extends Plugin
             Fields::EVENT_REGISTER_FIELD_TYPES,
             function (RegisterComponentTypesEvent $event) {
                 $event->types[] = CombinedField::class;
-                // $event->types[] = ProvinceField::class;
-                // $event->types[] = CountryField::class;
-                // $event->types[] = PostalCodeField::class;
             }
         );
 
